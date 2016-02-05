@@ -10,20 +10,20 @@ defmodule FizzBuzz do
   
   def guess(a, r..q), do: guess_again(a, r..q, q)
   
-  def guess_again(a, r, b) when a < b do
-    q = div(b, 2)
+  def guess_again(a, r..q, b) when a < b do
+    q = r + div((q - r), 2)
     IO.puts("Is it #{q}?")
     guess_again(a, r..q, q)
   end
   
-  def guess_again(a, r, b) when a > b do
-    q = (b * 2)
+  def guess_again(a, r..q, b) when a > b do
+    q = b + div((q - r), 2) + 1
     IO.puts("Is it #{q}?")
-    guess_again(a, r..q, q)
+    guess_again(a, b..q, q)
   end
   
-  def guess_again(a, r, b) when a == b do
-    IO.puts("It is #{a}?")
+  def guess_again(a, _.._, b) when a == b do
+    IO.puts("Aha! It is #{a}.")
   end
   
 end
